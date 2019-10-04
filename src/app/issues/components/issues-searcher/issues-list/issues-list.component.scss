@@ -1,0 +1,44 @@
+mat-form-field {
+  width: 100%;
+  margin: 12px;
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+mat-divider {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.star {
+  align-self: center;
+}
+
+.liked {
+  color: mediumslateblue;
+}
+
+.issue {
+  margin-bottom: 8px;
+}
+
+.date {
+  text-align: end;
+}
+
+.nick {
+  margin-top: auto;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.content {
+  padding-left: 24px;
+}

@@ -1,0 +1,35 @@
+<mat-progress-bar *ngIf="showLoadingBar" mode="indeterminate"></mat-progress-bar>
+<p *ngIf="!issues">your search results will appear here</p>
+<p *ngIf="issues && issues.length === 0">try a different query</p>
+<div *ngIf="issues && issues.length > 0">
+  <div *ngFor="let issue of issues" class="issue">
+    <div fxLayout="row">
+      <button class="star" mat-icon-button fxFlex="5">
+        <mat-icon (click)="onLikeOrUnlikeEvent(issue.id)" [ngClass]="{'liked': isLiked(issue.id)}">star</mat-icon>
+      </button>
+      <h3 fxFlex="80"><a [href]="issue.html_url">Title: {{issue.title}}</a></h3>
+      <p class="date" fxFlex="15">
+        <mat-icon>today</mat-icon>
+        {{formatDate(issue.created_at)}}
+      </p>
+    </div>
+    <div class="content">
+      <div fxLayout="row">
+        <img src="{{issue.user.avatar_url}}" alt="avatar" class="avatar">
+        <a [href]="issue.user.html_url" class="nick"> {{issue.user.login}} </a>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" readonly="true" [value]="issue.body"></textarea>
+      </mat-form-field>
+      <mat-chip-list aria-label="Labels">
+        <mat-chip *ngFor="let label of issue.labels"
+                  [ngStyle]="{'background-color': '#'+label.color}"
+                  (click)="onLabelClick(label.name)"
+                  matTooltip="Click to change query"
+                  matTooltipPosition="above">{{label.name}}</mat-chip>
+      </mat-chip-list>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</div>
